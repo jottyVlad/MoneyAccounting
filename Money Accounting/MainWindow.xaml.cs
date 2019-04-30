@@ -36,7 +36,10 @@ namespace Money_Accounting
 
         private void RemoveMoney_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            RemoveMoney RemoveMoneyWind = new RemoveMoney();
+            RemoveMoneyWind.MainWind = this;
+            RemoveMoneyWind.ShowDialog();
         }
 
         private void SeeMoney_Click(object sender, RoutedEventArgs e)

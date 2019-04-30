@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="RemoveMoney" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Удалить монеты" HorizontalAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="250" Height="30" Click="RemoveCoins_Click"/>
+        <Button Content="Удалить купюры" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" Width="250" Height="30" Click="RemoveBills_Click"/>
     </Grid>
 </Window>

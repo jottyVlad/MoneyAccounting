@@ -19,9 +19,42 @@ namespace Money_Accounting.money
     /// </summary>
     public partial class RemoveMoney : Window
     {
+        public MainWindow MainWind { get; set; }
         public RemoveMoney()
         {
             InitializeComponent();
+
+            this.Closing += RemoveMoney_Closing;
+        }
+
+        private void RemoveMoney_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                MainWind.Show();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void RemoveCoins_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            namely_RemoveMoney RemoveCoinsWind = new namely_RemoveMoney();
+            RemoveCoinsWind.isCoins = true;
+            RemoveCoinsWind.RemoveMoneyWind = this;
+            RemoveCoinsWind.ShowDialog();
+        }
+
+        private void RemoveBills_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            namely_RemoveMoney RemoveCoinsWind = new namely_RemoveMoney();
+            RemoveCoinsWind.isCoins = false;
+            RemoveCoinsWind.RemoveMoneyWind = this;
+            RemoveCoinsWind.ShowDialog();
         }
     }
 }

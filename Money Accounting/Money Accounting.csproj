@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="money\namely_RemoveMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="money\RemoveMoney.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +112,9 @@
     </Compile>
     <Compile Include="money\namely_AddMoney.xaml.cs">
       <DependentUpon>namely_AddMoney.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="money\namely_RemoveMoney.xaml.cs">
+      <DependentUpon>namely_RemoveMoney.xaml</DependentUpon>
     </Compile>
     <Compile Include="money\RemoveMoney.xaml.cs">
       <DependentUpon>RemoveMoney.xaml</DependentUpon>

@@ -16,26 +16,27 @@ using System.Windows.Shapes;
 namespace Money_Accounting.money
 {
     /// <summary>
-    /// Логика взаимодействия для namely_AddMoney.xaml
+    /// Логика взаимодействия для namely_RemoveMoney.xaml
     /// </summary>
-    public partial class namely_AddMoney : Window
+    public partial class namely_RemoveMoney : Window
     {
-
-        public AddMoney AddMoneyWind { get; set; }
         public bool isCoins { get; set; }
-        int money_add = 0; 
-        public namely_AddMoney()
+        int money_remove = 0;
+
+        public RemoveMoney RemoveMoneyWind { get; set; }
+
+        public namely_RemoveMoney()
         {
             InitializeComponent();
 
-            this.Closing += Namely_AddMoney_Closing;
+            this.Closing += Namely_RemoveMoney_Closing;
         }
 
-        private void Namely_AddMoney_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Namely_RemoveMoney_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-                AddMoneyWind.Show();
+                RemoveMoneyWind.Show();
             }
             catch
             {
@@ -43,32 +44,32 @@ namespace Money_Accounting.money
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void Remove_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                money_add = Convert.ToInt32(this.NumberOfMoney.Text);
+                money_remove = Convert.ToInt32(this.NumberOfMoney.Text);
             }
             catch
             {
                 return;
             }
-            if(this.Reason.Text != "")
+            if (this.Reason.Text != "")
             {
-                if(isCoins == true)
+                if (isCoins == true)
                 {
                     MySqlConnection conn = DB.GetDBConnection();
                     conn.Open();
 
-                    string sql = $"INSERT INTO coins_register(id, reason, number) VALUES(null, '{this.Reason.Text}', {money_add})"; // Вставляю запись в регистр об зачислении
-                    MySqlCommand command = new MySqlCommand(sql, conn);                                                                             
-                    int command_insert = command.ExecuteNonQuery();                                                                 // ----------------------------------------
+                    string sql = $"INSERT INTO coins_register(id, reason, number) VALUES(null, '{this.Reason.Text}', -{money_remove})";
+                    MySqlCommand command = new MySqlCommand(sql, conn);
+                    int command_insert = command.ExecuteNonQuery();
 
-                    sql = $"SELECT number FROM all_money WHERE what = 'coin'"; // Выбираю кол-во монет СЕЙЧАС
+                    sql = $"SELECT number FROM all_money WHERE what = 'coin'";
                     command = new MySqlCommand(sql, conn);
-                    int temp = Convert.ToInt32(command.ExecuteScalar());       // ---------------------------
+                    int temp = Convert.ToInt32(command.ExecuteScalar());
 
-                    sql = $"UPDATE all_money SET number = {temp+money_add} WHERE what = 'coin'"; // Добавляю в монеты введёное кол-во монет 
+                    sql = $"UPDATE all_money SET number = {temp - money_remove} WHERE what = 'coin'";
                     command = new MySqlCommand(sql, conn);
                     command_insert = command.ExecuteNonQuery();
 
@@ -76,7 +77,7 @@ namespace Money_Accounting.money
                     command = new MySqlCommand(sql, conn);
                     temp = Convert.ToInt32(command.ExecuteScalar());
 
-                    sql = $"UPDATE all_money SET number = {temp+money_add} WHERE what = 'all'";
+                    sql = $"UPDATE all_money SET number = {temp - money_remove} WHERE what = 'all'";
                     command = new MySqlCommand(sql, conn);
                     temp = command.ExecuteNonQuery();
 
@@ -86,7 +87,8 @@ namespace Money_Accounting.money
                 {
                     MySqlConnection conn = DB.GetDBConnection();
                     conn.Open();
-                    string sql = $"INSERT INTO bills_register(id, reason, number) VALUES(null, '{this.Reason.Text}', {money_add})";
+
+                    string sql = $"INSERT INTO bills_register(id, reason, number) VALUES(null, '{this.Reason.Text}', -{money_remove})";
                     MySqlCommand command = new MySqlCommand(sql, conn);
                     int command_insert = command.ExecuteNonQuery();
 
@@ -94,7 +96,7 @@ namespace Money_Accounting.money
                     command = new MySqlCommand(sql, conn);
                     int temp = Convert.ToInt32(command.ExecuteScalar());
 
-                    sql = $"UPDATE all_money SET number = {temp + money_add} WHERE what = 'bill'";
+                    sql = $"UPDATE all_money SET number = {temp - money_remove} WHERE what = 'bill'";
                     command = new MySqlCommand(sql, conn);
                     command_insert = command.ExecuteNonQuery();
 
@@ -102,7 +104,7 @@ namespace Money_Accounting.money
                     command = new MySqlCommand(sql, conn);
                     temp = Convert.ToInt32(command.ExecuteScalar());
 
-                    sql = $"UPDATE all_money SET number = {temp + money_add} WHERE what = 'all'";
+                    sql = $"UPDATE all_money SET number = {temp - money_remove} WHERE what = 'all'";
                     command = new MySqlCommand(sql, conn);
                     temp = command.ExecuteNonQuery();
 
