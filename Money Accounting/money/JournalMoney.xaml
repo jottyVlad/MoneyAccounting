@@ -1,0 +1,16 @@
+﻿<Window x:Class="Money_Accounting.money.JournalMoney"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Money_Accounting.money"
+        mc:Ignorable="d"
+        Title="JournalMoney" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="button" Content="Добавление монет" HorizontalAlignment="Left" Margin="150,81,0,0" VerticalAlignment="Top" Width="200" Height="25" Click="ButtonMoneyAdd_Click"/>
+        <Button x:Name="button1" Content="Добавление купюр" HorizontalAlignment="Left" Margin="150,136,0,0" VerticalAlignment="Top" Width="200" Height="25" Click="ButtonBillsAdd_Click"/>
+        <Button x:Name="button3" Content="Удаление монет" HorizontalAlignment="Right" Margin="0,81,150,0" VerticalAlignment="Top" Width="200" Height="25" Click="ButtonMoneyDelete_Click"/>
+        <Button x:Name="button4" Content="Удаление купюр" HorizontalAlignment="Right" Margin="0,136,150,0" VerticalAlignment="Top" Width="200" Height="25" Click="ButtonBillsDelete_Click"/>
+
+    </Grid>
+</Window>

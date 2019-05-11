@@ -49,5 +49,13 @@ namespace Money_Accounting
             SeeMoneyWind.MainWind = this;
             SeeMoneyWind.ShowDialog();
         }
+
+        private void JournalMoney_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            JournalMoney JournalMoneyWind = new JournalMoney();
+            JournalMoneyWind.MainWind = this;
+            JournalMoneyWind.ShowDialog();
+        }
     }
 }
